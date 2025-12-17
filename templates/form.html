@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farm Finance Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        input { width: 100%; padding: 5px; }
+        .add-btn { margin-bottom: 20px; padding: 5px 10px; }
+        .submit-btn { padding: 10px 20px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h2>Farm Finance Form</h2>
+    <form action="/" method="POST">
+
+        <!-- Farmer & Crop Details -->
+        <h3>Farmer & Crop Details</h3>
+        <label>Farmer Name: <input name="farmer" required></label><br><br>
+        <label>Crop Name: <input name="crop" required></label><br><br>
+        <label>Season: <input name="season" required></label><br><br>
+        <label>Total Acres: <input name="acres" type="number" min="0" required></label><br><br>
+        <label>Date of Sowing: <input name="sowing_date" type="date" required></label><br><br>
+        <label>Date of Harvest: <input name="harvest_date" type="date" required></label><br><br>
+        <label>Location: <input name="location" required></label><br><br>
+
+        <!-- Expense Details -->
+        <h3>Expense Details</h3>
+        <table id="expenseTable">
+            <tr>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><input name="exp_category[]"></td>
+                <td><input name="exp_amount[]" type="number" min="0"></td>
+                <td><input name="exp_date[]" type="date"></td>
+                <td><input name="exp_desc[]"></td>
+            </tr>
+        </table>
+        <button type="button" class="add-btn" onclick="addExpenseRow()">Add Expense Row</button>
+
+        <!-- Income Details -->
+        <h3>Income Details</h3>
+        <table id="incomeTable">
+            <tr>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><input name="inc_category[]"></td>
+                <td><input name="inc_amount[]" type="number" min="0"></td>
+                <td><input name="inc_date[]" type="date"></td>
+                <td><input name="inc_desc[]"></td>
+            </tr>
+        </table>
+        <button type="button" class="add-btn" onclick="addIncomeRow()">Add Income Row</button>
+
+        <br>
+        <button type="submit" class="submit-btn">Generate PDF</button>
+    </form>
+
+    <script>
+        function addExpenseRow() {
+            let table = document.getElementById('expenseTable');
+            let row = table.insertRow();
+            row.innerHTML = `
+                <td><input name="exp_category[]"></td>
+                <td><input name="exp_amount[]" type="number" min="0"></td>
+                <td><input name="exp_date[]" type="date"></td>
+                <td><input name="exp_desc[]"></td>
+            `;
+        }
+        function addIncomeRow() {
+            let table = document.getElementById('incomeTable');
+            let row = table.insertRow();
+            row.innerHTML = `
+                <td><input name="inc_category[]"></td>
+                <td><input name="inc_amount[]" type="number" min="0"></td>
+                <td><input name="inc_date[]" type="date"></td>
+                <td><input name="inc_desc[]"></td>
+            `;
+        }
+    </script>
+</body>
+</html>
